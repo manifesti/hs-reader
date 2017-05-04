@@ -4,7 +4,7 @@ import re
 import os
 import webbrowser
 
-# get user input, load imports
+# get user input, load imports and download the article
 url = input("Anna artikkelin osoite: ")
 conn = urllib3.PoolManager()
 pageconn = conn.request('GET', url)
