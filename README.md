@@ -5,11 +5,11 @@ Takes an URL to a Helsingin Sanomat-article, creates a HTML-file with the articl
 
 Uses BeautifulSoup to parse the HTML.
 
-Dependencies on Linux;
+Dependencies on Linux:
 ```
 sudo apt-get install python3-bs4
 ```
-...or if you have PIP installed;
+...or if you have PIP installed:
 ```
 sudo pip install BeautifulSoup4
 ```
