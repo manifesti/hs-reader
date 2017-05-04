@@ -15,16 +15,17 @@ soup = BeautifulSoup(pagedata, 'html.parser')
 div_id = "ArticleBody"
 regexd = re.compile('%s-\d*'%div_id)
 
-# find the div
+# find the content divs
 article = soup.find("div", id=regexd)
 headline = soup.find('h1', attrs = {'class' : 'article-title'})
 author = soup.find('a', attrs = {'itemprop' : 'author'})
 
-# add images from article
-image = article.find('img')
-image['src'] = "http:" + image['src']
+# load images from article
 for tag in article.find_all('figure'):
-	tag.replaceWith(image)
+	if tag is not None:
+		image = tag.find('img')
+		image['src'] = "http:" + image['src']
+		tag.replaceWith(image)
 
 # write the HTML-file
 file = open("hesaripage.html", "w+")
@@ -38,7 +39,7 @@ file.write(article.prettify())
 file.write("</div></html>")
 file.close()
 
-# open the file in browser
+#open the file in browser
 webbrowser.open_new_tab('file://' + os.path.dirname(os.path.abspath(__file__)) + "/hesaripage.html")
 print("HTML-tiedosto valmis, avataan..")
 
