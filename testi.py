@@ -16,13 +16,13 @@ div_id = "ArticleBody"
 regexd = re.compile('%s-\d*'%div_id)
 
 # find the div
-article = soup.find("div", id=regexd)
-# remove images from article
-for tag in article.find_all('figure'):
-	tag.replaceWith('')
+article = soup.find("div", id=regexd
 headline = soup.find('h1', attrs = {'class' : 'article-title'})
 author = soup.find('a', attrs = {'itemprop' : 'author'})
 
+# remove images from article
+for tag in article.find_all('figure'):
+	tag.replaceWith('')
 
 # write the HTML-file
 file = open("hesaripage.html", "w+")
