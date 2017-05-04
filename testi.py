@@ -20,7 +20,7 @@ article = soup.find("div", id=regexd)
 headline = soup.find('h1', attrs = {'class' : 'article-title'})
 author = soup.find('a', attrs = {'itemprop' : 'author'})
 
-# remove images from article
+# add images from article
 image = article.find('img')
 image['src'] = "http:" + image['src']
 for tag in article.find_all('figure'):
@@ -38,7 +38,7 @@ file.write(article.prettify())
 file.write("</div></html>")
 file.close()
 
-#open the file in browser
+# open the file in browser
 webbrowser.open_new_tab('file://' + os.path.dirname(os.path.abspath(__file__)) + "/hesaripage.html")
 print("HTML-tiedosto valmis, avataan..")
 
