@@ -24,8 +24,9 @@ author = soup.find('a', attrs = {'itemprop' : 'author'})
 # write the HTML-file
 file = open("hesaripage.html", "w+")
 file.write("<html><head><meta charset=\"UTF-8\"><title>hs.fi reader</title><link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css\" integrity=\"sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u\" crossorigin=\"anonymous\"></head>")
-file.write("<body><div class=\"container\">")
+file.write("<body><div class=\"container\"><div class=\"page-header\">")
 file.write(headline.prettify())
+file.write("</div>")
 if author:
 	file.write(author.prettify())
 file.write(article.prettify())
