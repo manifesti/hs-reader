@@ -1,4 +1,4 @@
-from bs4 import BeautifulSoup
+from bs4 import BeautifulSoup, Tag
 import urllib3
 import re
 import os
@@ -17,6 +17,9 @@ regexd = re.compile('%s-\d*'%div_id)
 
 # find the div
 article = soup.find("div", id=regexd)
+# remove images from article
+for tag in article.find_all('figure'):
+	tag.replaceWith('')
 headline = soup.find('h1', attrs = {'class' : 'article-title'})
 author = soup.find('a', attrs = {'itemprop' : 'author'})
 
