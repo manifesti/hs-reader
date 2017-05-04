@@ -21,8 +21,10 @@ headline = soup.find('h1', attrs = {'class' : 'article-title'})
 author = soup.find('a', attrs = {'itemprop' : 'author'})
 
 # remove images from article
+image = article.find('img')
+image['src'] = "http:" + image['src']
 for tag in article.find_all('figure'):
-	tag.replaceWith('')
+	tag.replaceWith(image)
 
 # write the HTML-file
 file = open("hesaripage.html", "w+")
