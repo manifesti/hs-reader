@@ -11,5 +11,5 @@ sudo apt-get install python3-bs4
 ```
 ...or if you have PIP installed:
 ```
-sudo pip install BeautifulSoup4
+sudo pip3 install BeautifulSoup4
 ```
