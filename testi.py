@@ -28,6 +28,7 @@ if headimage is not None:
 	headimage.name = "img"
 	headimage['src'] = headimage['content']
 	headimage['alt'] = "articleimage"
+	headimage['class'] = 'img-responsive'
 	del headimage['content'], headimage['property']
 
 # load images from article
@@ -35,6 +36,7 @@ for tag in article.find_all('figure'):
 	if tag is not None:
 		image = tag.find('img')
 		image['src'] = "http:" + image['src']
+		image['class'] = 'img-responsive'
 		tag.replaceWith(image)
 
 # write the HTML-file
