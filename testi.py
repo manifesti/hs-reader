@@ -19,8 +19,16 @@ regexd = re.compile('%s-\d*'%div_id)
 
 # find the content divs
 article = soup.find("div", id=regexd)
+headimage = soup.find("meta", attrs = {'property' : 'og:image'})
 headline = soup.find('h1', attrs = {'class' : 'article-title'})
 author = soup.find('a', attrs = {'itemprop' : 'author'})
+
+# modify article image tag
+if headimage is not None:
+	headimage.name = "img"
+	headimage['src'] = headimage['content']
+	headimage['alt'] = "articleimage"
+	del headimage['content'], headimage['property']
 
 # load images from article
 for tag in article.find_all('figure'):
@@ -34,6 +42,8 @@ file = open("hesaripage.html", "w+")
 file.write("<html><head><meta charset=\"UTF-8\"><title>hs.fi reader</title><link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css\" integrity=\"sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u\" crossorigin=\"anonymous\"></head>")
 file.write("<body><div class=\"container\"><div class=\"page-header\">")
 file.write(headline.prettify())
+if headimage:
+	file.write(headimage.prettify())
 file.write("</div>")
 if author:
 	file.write(author.prettify())
